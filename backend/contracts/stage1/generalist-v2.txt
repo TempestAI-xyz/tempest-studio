@@ -1,0 +1,38 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Build one current list from the latest applicable request:
+- Include explicit wants, constraints, exclusions, audience, workflows, data, platform, integrations, style, scale, deadline, and later/future items that matter.
+- Add practical inferred requirements only when they make the product coherent.
+- Remove stale or conflicting requirements after pivots or corrections.
+- Avoid duplicate requirements and implementation-plan detail.
+
+Statuses:
+- answered = explicit latest-applicable user requirement or exclusion.
+- assumed = safe recommendation for non-blocking ambiguity.
+- open = true blocker where a reasonable assumption could create the wrong product, unsafe trust boundary, unresolved contradiction, or major architecture/scope choice.
+
+Use open sparingly. Strong open candidates include contradictions; sensitive/private/regulated data; identity, roles, permissions, and accountability; external processing of private content; money, payouts, prizes, taxes, or legal eligibility; destructive bulk operations; physical or life-safety behavior; hard platform or hardware targets; extreme scale; impossible guarantees; and tight deadline/cost scope conflicts.
+For impossible guarantees, convert to practical reliability/recovery requirements and open only if the risk boundary remains a real user decision.
+For broad messy prompts, distinguish first-release scope from future compatibility.
+
+For every open item, include requirement text, question, recommendation, and reason.
+Before returning, self-check for missing major requirements, contradiction pairs, stale items, duplicate bloat, missed true blockers, and unnecessary blockers.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Revise the whole list every turn:
+- The latest concrete user message wins.
+- Keep only still-valid requirements.
+- Rewrite changed requirements.
+- Add new material requirements and necessary cascading effects.
+- Remove stale or conflicting requirements and assumptions.
+- If product category, audience, platform, or launch purpose changed, remove old-domain workflows, roles, integrations, style constraints, exclusions, and future-scope items unless the latest request still needs them.
+- If the latest message says no, remove, fake, static, demo-only, not required, or no longer needed, do not keep the old item as future scope, optional scope, or a positive requirement.
+- Do not include both a positive requirement and a negative/exclusion requirement for the same thing.
+- Avoid duplicates and implementation-plan detail.
+
+Statuses:
+- answered = explicit latest-applicable wants, constraints, exclusions, or corrections.
+- assumed = safe defaults and practical recommendations.
+- open = true blockers only, where the answer materially changes what should be built or whether the next stage can proceed safely.
+
+Strong blocker candidates include active contradictions; sensitive/private/regulated data identity/access; permission and trust boundaries; external processing of private content; payments, payouts, prizes, taxes, refunds, legal eligibility, or launch region; irreversible or destructive bulk operations; extreme scale targets when first-release feasibility is unclear; hard platform constraints; and unclear first-release scope.
+Do not ask about ordinary preferences or implementation details when a safe recommendation is enough.
+For every open item, include recommended requirement text, question, recommendation, and reason.
+
+Before returning, self-check once for stale old-scope items, contradiction pairs, missing latest-scope requirements, duplicate bloat, missed true blockers, and unnecessary blockers.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}

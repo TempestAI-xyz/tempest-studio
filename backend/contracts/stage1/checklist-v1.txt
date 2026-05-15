@@ -1,0 +1,32 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Create one current requirements list. Mentally check product purpose, users, workflows, data/content, permissions/trust, platform/device, offline/reliability, integrations, scale/performance, safety/compliance, destructive operations, monetization/legal, style/tone, deadlines, exclusions, and future/later scope.
+
+Statuses:
+- answered = explicit latest-applicable user requirement.
+- assumed = practical default or recommendation.
+- open = only when the answer materially changes what should be built, product safety/trust/legal posture, data handling, architecture, destructive behavior, or first-release feasibility.
+
+Merge related details, avoid duplicates, and do not output implementation-plan steps.
+On later turns, newest concrete user message wins; remove stale or conflicting requirements.
+For every open item, include requirement text, question, recommendation, and reason.
+Self-check once for missing dimensions, missed blockers, over-opened preferences, duplicates, and stale items.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}

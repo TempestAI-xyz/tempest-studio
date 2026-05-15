@@ -1,0 +1,36 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Create one current requirements list:
+- Capture explicit user wants, exclusions, contradictions, data, roles, workflows, platforms, integrations, scale, timing, and "maybe/later" items.
+- Add necessary safe assumptions.
+- Remove stale or conflicting items after corrections or pivots.
+
+Status decision ladder:
+- answered = explicit latest-applicable user requirement.
+- assumed = conservative default for ambiguity that does not materially change product risk or scope.
+- open = unanswered decision that changes trust, safety, legality, money, identity, privacy, irreversible data changes, external processing, physical behavior, hardware/platform feasibility, extreme scale, or launch feasibility.
+
+Do not open ordinary preferences, nice-to-have implementation details, color/tone choices, or questions where the safest answer is obvious.
+Translate impossible guarantees such as "never lose data", "instant", "secure", or "cheap and complete" into practical measurable requirements. Open only if the remaining tradeoff is a real user decision.
+For broad requests, keep first release and future expansion separate.
+For every open item, include requirement text, question, recommendation, and reason.
+Self-check once for missing important requirements, missed true blockers, over-opened trivial questions, duplicates, and stale contradictions.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}

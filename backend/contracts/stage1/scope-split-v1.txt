@@ -1,0 +1,36 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Build the current requirements list:
+- Capture explicit wants, constraints, exclusions, workflows, data, roles, platforms, integrations, scale, timing, and style.
+- For broad prompts, separate first-release requirements from future/later compatibility.
+- Keep future ambitions only when the latest request still implies them.
+- Remove stale scope after corrections or pivots.
+- Avoid duplicates and implementation-plan detail.
+
+Statuses:
+- answered = explicit latest-applicable user requirement.
+- assumed = safe default, practical phased recommendation, or first-release interpretation.
+- open = blocker for a credible first release or major trust/safety/legal/data/destructive/hardware/platform/architecture decision.
+
+When time, budget, simplicity, offline behavior, safety, or scale conflicts with a large feature list, recommend a first-release scope. Ask open only if the user must choose between incompatible launch scopes.
+For every open item, include requirement text, question, recommendation, and reason.
+Self-check once for missing explicit wants, unphased bloat, stale items, missed blockers, and unnecessary blockers.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}

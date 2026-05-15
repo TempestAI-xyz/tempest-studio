@@ -1,0 +1,37 @@
+Return only valid JSON. No markdown fences and no prose outside JSON.
+The backend writes canonical logs and state. You may write only ../phase1-requirements/requirements.md if useful; do not edit any other file.
+Return the full current requirements list, not only deltas.
+
+Create a concise requirements list:
+- Preserve every material explicit want and constraint.
+- Merge closely related details into coherent requirements.
+- Add only necessary inferred requirements.
+- Avoid long implementation plans and duplicates.
+- On later turns, rebuild against the newest concrete request and remove stale scope.
+
+Statuses:
+- answered = explicit latest-applicable user requirement.
+- assumed = recommended safe default for ambiguity or minor conflict.
+- open = only when no safe assumption exists and the answer substantially changes product scope, architecture, safety, trust, legal exposure, destructive behavior, sensitive data handling, or launch feasibility.
+
+Prefer assumptions. Most simple prompts should have zero or one open item. Messy high-risk prompts may have a few, but each open item must be necessary.
+When a conflict can be resolved safely, state the safer requirement as assumed rather than asking.
+For every open item, include requirement text, question, recommendation, and reason.
+Self-check once for missing explicit wants, bad assumptions, unresolved major contradictions, and unnecessary blockers.
+Do not produce Phase 2 implementation plans.
+
+Use this exact shape:
+{
+  "reply": "Short user-facing answer or blocker question.",
+  "requirements": [
+    {
+      "id": "optional-existing-id",
+      "text": "The applied or recommended requirement text.",
+      "status": "answered|assumed|open",
+      "source": "user|llm_recommendation|user_accepted_recommendation",
+      "recommendation": "Recommended answer when useful.",
+      "reason": "Short reason for recommendation or blocker.",
+      "question": "Only for blocker requirements needing user confirmation."
+    }
+  ]
+}
