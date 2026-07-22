@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TEMPEST_ARCHIVE_URL="https://github.com/gleb-urvanov/tempest-studio/releases/download/v0.1/tempest-studio-0.1.0.tgz"
+TEMPEST_ARCHIVE_URL="https://github.com/gleb-urvanov/tempest-studio/releases/download/v0.1.1/tempest-studio-0.1.1.tgz"
 TEMPEST_INSTALL_DIR="${TEMPEST_INSTALL_DIR:-tempest-studio}"
 NVM_VERSION="${NVM_VERSION:-v0.40.1}"
 
