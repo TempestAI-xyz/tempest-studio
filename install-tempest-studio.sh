@@ -3,7 +3,7 @@ set -euo pipefail
 
 TEMPEST_INSTALL_DIR="${TEMPEST_INSTALL_DIR:-tempest-studio}"
 NVM_VERSION="${NVM_VERSION:-v0.40.1}"
-TEMPEST_ARCHIVE_URL="https://github.com/gleb-urvanov/tempest-studio/releases/download/v0.1.2/tempest-studio-0.1.2.tgz"
+TEMPEST_ARCHIVE_URL="https://github.com/TempestAI-xyz/tempest-studio/releases/download/v0.1.2/tempest-studio-0.1.2.tgz"
 TEMPEST_RELEASE_API_URL="${TEMPEST_RELEASE_API_URL:-https://api.github.com/repos/gleb-urvanov/tempest-studio/releases/latest}"
 
 ensure_node_20() {
